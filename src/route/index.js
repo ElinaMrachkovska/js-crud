@@ -47,7 +47,6 @@ class Product {
 // ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/', function (req, res) {
   // res.render генерує нам HTML сторінку
-  const list = Product.getList()
   // ↙️ cюди вводимо назву файлу з сontainer
   res.render('index', {
     // вказуємо назву папки контейнера, в якій знаходяться наші стилі
@@ -56,6 +55,14 @@ router.get('/', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
+router.get('/product-create', function (req, res) {
+  res.render('/product-create', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: '/product-create',
+    info: 'Продукт створено',
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
 router.post('/product-create', function (req, res) {
   const { name, price, description } = req.body
   const product = new Product(name, price, description)
@@ -68,7 +75,7 @@ router.post('/product-create', function (req, res) {
   res.render('/alert', {
     // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: '/alert',
-    info: 'Продукт створено',
+    info: 'Продукт було успішно видалено',
   })
   // ↑↑ сюди вводимо JSON дані
 })
