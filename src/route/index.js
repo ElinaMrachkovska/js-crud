@@ -57,9 +57,9 @@ class User {
 
 class Product {
   static #list = []
-  constructor(id, createDate, name, price, description) {
-    id = Math.floor(Math.random() * 100000)
-    createDate = new Date().toISOString()
+  constructor(name, price, description) {
+    this.id = Math.floor(Math.random() * 100000)
+    this.createDate = new Date().toISOString()
     this.name = name
     this.price = price
     this.description = description
@@ -112,11 +112,10 @@ router.get('/', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
-
 router.get('/product-create', function (req, res) {
-  res.render('/product-create', {
+  res.render('product-create', {
     // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-    style: '/product-create',
+    style: 'product-create',
     info: 'Продукт створено',
   })
   // ↑↑ сюди вводимо JSON дані
@@ -130,13 +129,13 @@ router.post('/product-create', function (req, res) {
   // res.render генерує нам HTML сторінку
 
   // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('/alert', {
+  res.render('alert', {
     // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-    style: '/alert',
+    style: 'alert',
     info: 'Продукт було успішно видалено',
   })
-  // ↑↑ сюди вводимо JSON дані
-
+})
+// ↑↑ сюди вводимо JSON дані
 router.post('/user-create', function (req, res) {
   const { email, login, password } = req.body
   const user = new User(email, login, password)
@@ -177,7 +176,6 @@ router.post('/user-update', function (req, res) {
     style: 'success-info',
     info: result ? 'Пошта оновлена' : 'Сталась помилка',
   })
-
 })
 // ================================================================
 

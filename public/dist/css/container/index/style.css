@@ -3,7 +3,6 @@
   flex-direction: column;
   padding: 16px;
   gap: 32px;
-
   border-radius: 12px;
   border: 1px solid #ddd;
   box-shadow: 3px 3px 3px 10px #ddd;
@@ -12,15 +11,12 @@
   font-size: 30px;
   color: blue;
   font-weight: bold;
-
 }
 .form__title {
   font-size: 20px;
   font-weight: bold;
   padding-bottom: 4px;
-
   border-bottom: 1px solid #ddd;
-
 }
 .form__content {
   display: grid;
@@ -41,7 +37,6 @@
 .form__button {
   border: 1px solid #ddd;
   padding: 8px;
-
   border-radius: 10px;
   background-color: blue;
   color: white;
@@ -54,9 +49,7 @@
 }
 .form p {
   color: #ddd;
-
   border-radius: 20px;
-
 }
 
 main {
@@ -64,7 +57,6 @@ main {
   flex-direction: column;
   gap: 40px;
   margin: 24px;
-
 }
 
 .user-list li {
