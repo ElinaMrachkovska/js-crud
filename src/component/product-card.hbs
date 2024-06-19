@@ -1,0 +1,11 @@
+   {{#with data}}
+    {{#each list}}
+	   <h2>{{name}}</h2>
+  <p class="descript">{{description}}</p>
+<p class="id">ID:{{id}}</p>
+<div class="last">
+<span>{{price}}</span>
+ <a href="/product-edit?id={{id}}" class="edit_link">Редагувати</a>
+ </div>
+ {{/each}}
+ {{/with}}
