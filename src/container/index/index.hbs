@@ -2,7 +2,41 @@
 Це код container файлу для index сторінки, 
 в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
  }}
+
+
 <main>
+  <section>
+        <div class="form">
+      <h1 class="form__create"> Створення товару</h1>
+  <h1 class="form__title">
+    Інформація про товар
+  </h1>
+  <form method="POST" action="/product-create">
+    <div class="form__content">
+       <div class="form__field__grid">
+      <div class="form__field">       
+<label for="name" class="form__label">Назва товару</label>
+<input type="name" name="name" class="form__input">
+      </div>
+      <div class="form__field">
+<label for="text" class="form__label">Ціна</label>
+<input type="text" name="text" class="form__input">
+      </div>
+      </div>
+         <div class="form__field">
+<label for="description" class="form__label">Короткий опис товару</label>
+<input type="description" name="description" class="form__input">
+<p>Відображається у картці товару</p>
+      </div>
+      <button class="form__button">Створити товар</button>
+</div>
+  </form>
+        </div>
+
+  </section>
+
+</main>
+{{!-- <main>
   <section>
 <div class="form">
   <h1 class="form__title">
@@ -49,40 +83,8 @@
 {{/with}}
  </div>
   </div>
-  </section>
-
-<main>
-  <section>
-        <div class="form">
-      <h1 class="form__create"> Створення товару</h1>
-  <h1 class="form__title">
-    Інформація про товар
-  </h1>
-  <form method="POST" action="/product-create">
-    <div class="form__content">
-       <div class="form__field__grid">
-      <div class="form__field">       
-<label for="name" class="form__label">Назва товару</label>
-<input type="name" name="name" class="form__input">
-      </div>
-      <div class="form__field">
-<label for="text" class="form__label">Ціна</label>
-<input type="text" name="text" class="form__input">
-      </div>
-      </div>
-         <div class="form__field">
-<label for="description" class="form__label">Короткий опис товару</label>
-<input type="description" name="description" class="form__input">
-<p>Відображається у картці товару</p>
-      </div>
-      <button class="form__button">Створити товар</button>
-
-   <section>
-<div class="form">
-  <h1 class="form__title">
-    Оновити пошту користувача
-  </h1>
-  <form method="POST" action="/user-update">
+  </section> --}}
+  {{!-- <form method="POST" action="/user-update">
     <div class="form__content">
         <div class="form__field">
 <label for="id" class="form__label">ID:</label>
@@ -102,7 +104,7 @@
   </form>
 </div>
   </section>
-</main>
+</main> --}}
 
 
 {{! 
