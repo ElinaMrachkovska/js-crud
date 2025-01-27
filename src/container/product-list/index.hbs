@@ -1,26 +1,10 @@
 <main>
-<h1 class="title_list">Список товарів</h1>
+<h1 class="title_list">Списочок товарів</h1>
 <section class="list">
-  {{product-card}}
-  <div class="card_list">
-	   <h2>Customer Stories</h2>
-  <p class="descript">How Fastly uses Slack Connect to wow enterprise customers</p>
-<p class="id">2545106</p>
-<div class="last">
-<span>5225$</span>
- <a href="/product-edit?id=" class="edit_link">Редагувати</a>
- </div>
- </div>
+  {{#each data.list}}
+  {{>product-card}}
+{{/each}}
 
-   <div class="card_list">
-	   <h2>Customer Stories</h2>
-  <p class="descript">How Fastly uses Slack Connect to wow enterprise customers</p>
-<p class="id">2545106</p>
-<div class="last">
-<span>5225$</span>
- <a href="/product-edit?id=" class="edit_link">Редагувати</a>
- </div>
- </div>
 	</section>
       </main>
 
