@@ -15,11 +15,11 @@ main {
   
 
   .title_list {
-       padding: 15px 0 15px 0;
-     line-height: 38px; /* 118.75% */
-       font-size: 30px;
-    color: blue;
-    font-weight: bold;
+    color: #0d11e9;
+    padding: 15px 0 15px 0;
+   font-size: s.space(7);
+    line-height: 38px; /* 118.75% */
+    letter-spacing: -0.3px;
   }
  
   .card_list {
@@ -57,7 +57,7 @@ main {
   }
 
  
-  .edit_link {
+  .delete_link {
     font-size: 16px;
     text-decoration: none;
     justify-content: flex-end;

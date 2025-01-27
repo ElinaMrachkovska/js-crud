@@ -9,22 +9,28 @@ class Product {
   static #list = []
   constructor(name, price, description) {
     this.id = Math.floor(Math.random() * 100000)
+    // this.id = new Date().getTime()
     this.createDate = new Date().toISOString()
     this.name = name
     this.price = price
     this.description = description
   }
+
   static getList = () => this.#list
   static add(product) {
     this.#list.push(product)
+    return this.#list
   }
-  static getById = (id) =>
-    this.#list.find((product) => user.id === id)
 
-  static updateById(id, data) {
+  static getById = (id) =>
+    this.#list.find((product) => product.id === id)
+
+  static updateById = (id, { name }) => {
     const product = this.getById(id)
     if (product) {
-      this.update(price, name, description)
+      if (name) {
+        product.name = name
+      }
       return true
     } else {
       return false
@@ -53,7 +59,7 @@ router.get('/', function (req, res) {
     // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'index',
     data: {
-      users: {
+      products: {
         list,
         isEmpty: list === 0,
       },
@@ -62,15 +68,9 @@ router.get('/', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
-router.get('/product-create', function (req, res) {
-  res.render('product-create', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-    style: 'product-create',
-    info: 'Продукт створено',
-  })
-})
 router.post('/product-create', function (req, res) {
   const { name, price, description } = req.body
+  // console.log(req.body)
   const product = new Product(name, price, description)
   Product.add(product)
 
@@ -84,17 +84,35 @@ router.post('/product-create', function (req, res) {
 })
 
 router.get('/product-list', function (req, res) {
-  const { name, price, description } = req.body
-  const product = new Product(name, price, description)
-  Product.add(product)
-
-  console.log(Product.getList())
   res.render('product-list', {
     // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'product-list',
     info: 'список товарів',
+    data: {
+      list: Product.getList(),
+    },
   })
 })
+router.get('/product-delete', function (req, res) {
+  const { id } = req.query
+  Product.deleteById(Number(id))
+  res.render('success-info', {
+    style: 'success-info',
+    info: 'Користувач видалений',
+  })
+})
+
+router.post('/product-update', function (req, res) {
+  const { data, id } = req.body
+  console.log(name, price, description, id)
+
+  const result = Product.updateById(Number(id), { data })
+  res.render('success-info', {
+    style: 'success-info',
+    info: result ? 'Товар оновлено' : 'Сталась помилка',
+  })
+})
+
 // ================================================================
 
 // Підключаємо роутер до бек-енду
