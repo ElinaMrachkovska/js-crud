@@ -6,7 +6,7 @@
 }
 
 .last {
-  flex-direction: inline-block;
+  flex-direction: inline;
   justify-content: space-between;
 }
 
