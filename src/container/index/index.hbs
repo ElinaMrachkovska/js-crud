@@ -41,7 +41,7 @@
         {{else}}
         <ul>
           {{#each list}}
-          <li>{{name}} | {{price}} | {{id}} <a href="/deleteById={{id}}">(Видалити)</a></li>
+          <li>{{name}} | {{price}} | {{id}} <a href="/product-delete?id={{id}}">(Видалити)</a></li>
           {{/each}}
         </ul>
       {{/if}}
@@ -62,20 +62,19 @@
 <input type="id" name="id" class="form__input">
       </div>
       <div class="form__field">
-<label for="name" class="form__label">Назва товару</label>
+<label for="name" class="form__label">Назва товару:</label>
 <input type="name" name="name" class="form__input">
       </div>
          <div class="form__field">
-<label for="text" class="form__label">Ціна</label>
+<label for="text" class="form__label">Ціна:</label>
 <input type="text" name="text" class="form__input">
       </div>
       <div class="form__field">
-      <label for="description" class="form__label">Короткий опис товару</label>
+      <label for="description" class="form__label">Короткий опис товару:</label>
 <input type="description" name="description" class="form__input in__d">
       </div>
-      <button class="form__button">Відправити</button>
-
-    </div>
+      <button class="form__button" >Оновити</button>
+  </div>
   </form>
   </div>
   </section>
