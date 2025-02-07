@@ -111,19 +111,18 @@ router.get('/product-list', function (req, res) {
 router.get('/product-delete', function (req, res) {
   const { id } = req.query
   Product.deleteById(Number(id))
-  res.render('success-info', {
-    style: 'success-info',
+  res.render('alert', {
+    style: 'alert',
     info: 'Користувач видалений',
   })
 })
 
 router.get('/product-edit', function (req, res) {
   const { id } = req.query
-  console.log(name, price, id)
 
-  const result = Product.updateById(Number(id), data)
-  res.render('success-info', {
-    style: 'success-info',
+  const result = Product.getById(Number(id), req.body)
+  res.render('product-edit', {
+    style: 'product-edit',
     info: result
       ? 'Товар оновлено'
       : 'Товар з таким ID не знайдено',
@@ -132,84 +131,41 @@ router.get('/product-edit', function (req, res) {
 
 router.post('/product-edit', function (req, res) {
   const { id, name, price, description } = req.body
-  const result = Product.updateById(Number(id), {
-    name,
-    price,
-    description,
-  })
 
-  res.render('success-info', {
-    style: 'success-info',
-    info: result ? 'Товар оновлено' : 'Сталась помилка',
-  })
+  if (!id || !name || !price || !description) {
+    return res.render('alert', {
+      style: 'alert',
+      info: 'Необхідно заповнити всі поля',
+    })
+  }
+
+  try {
+    const result = Product.updateById(Number(id), {
+      name,
+      price,
+      description,
+    })
+
+    if (result) {
+      res.render('alert', {
+        style: 'alert',
+        info: 'Товар оновлено',
+      })
+    } else {
+      res.render('alert', {
+        style: 'alert',
+        info: 'Сталась помилка',
+      })
+    }
+  } catch (error) {
+    console.error(error)
+    res.render('alert', {
+      style: 'alert',
+      info: 'Помилка оновлення даних товару',
+    })
+  }
 })
 
-// router.get('/product-edit', async function (req, res) {
-//   const { id } = req.query
-
-//   if (!id) {
-//     return res.render('/alert', {
-//       style: 'danger',
-//       info: 'Необхідно вказати ID товару',
-//     })
-//   }
-
-//   try {
-//     const product = await Product.findById(Number(id))
-
-//     if (!product) {
-//       return res.render('/alert', {
-//         style: 'danger',
-//         info: 'Товар з таким ID не знайдено',
-//       })
-//     }
-
-//     res.render('/product-edit', { product })
-//   } catch (error) {
-//     console.error(error)
-//     res.render('/alert', {
-//       style: 'danger',
-//       info: 'Помилка отримання даних товару',
-//     })
-//   }
-// })
-
-// router.post('/product-edit', async function (req, res) {
-//   const { id, name, price, description } = req.body
-
-//   if (!id || !name || !price || !description) {
-//     return res.render('/alert', {
-//       style: 'danger',
-//       info: 'Необхідно заповнити всі поля',
-//     })
-//   }
-
-//   try {
-//     const result = await Product.updateById(Number(id), {
-//       name,
-//       price,
-//       description,
-//     })
-
-//     if (result) {
-//       res.render('/alert', {
-//         style: 'success',
-//         info: 'Товар успішно оновлено',
-//       })
-//     } else {
-//       res.render('/alert', {
-//         style: 'danger',
-//         info: 'Помилка оновлення товару',
-//       })
-//     }
-//   } catch (error) {
-//     console.error(error)
-//     res.render('/alert', {
-//       style: 'danger',
-//       info: 'Помилка оновлення даних товару',
-//     })
-//   }
-// })
 // ================================================================
 
 // Підключаємо роутер до бек-енду

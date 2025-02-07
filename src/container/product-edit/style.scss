@@ -5,66 +5,91 @@
     flex-direction: column;
     padding: s.space(4);
     gap: s.space(8);
-    background: #fff;
-    box-shadow: 0px 0px 26px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-   
-&__create {
-    font-size: 30px;
-    color: blue;
-    font-weight: bold;
-}
+
+    border-radius: 12px;
+    border: 1px solid s.color('light');
+    box-shadow: 3px 3px 7px 10px s.color('light');
+
+
     &__title {
-font-size: 20px;
-font-weight: bold;
+font-size: 25px;
 padding-bottom: s.space(1);
-    }
+
+   }
     &__content {
      display: grid;  
      gap: s.space(8);
     }
     &__field {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 32%, 32%, auto, 100%;
         gap: s.space(2);
+        border-radius: 12px;
     }
     &__label {
         font-size: 14px;
+        opacity: 0.7;
+    }
+    &__label__d {
+        padding-top: s.space(2);
+        color: gray;
+        opacity: 50%;
+        
     }
     &__input {
         border: 1px solid s.color('light');
         padding: s.space(2);
+        border: 1px solid s.color('light');
+        border-radius: 6px;
+        
+    }
+    &__content__row {
+        display: grid;
+        gap: s.space(2);
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        justify-content: space-between ;
+    }
+   
+    .in__d {
+        padding: s.space(4);
     }
     &__button {
         border: 1px solid s.color('light');
         padding: s.space(2);
-        border-radius: 10px;
+
+        border-radius: 6px;
         background-color: blue;
         color: white;
-    }
-    &__field__grid {
-        display: grid;
 
+    }
+   &__button__save {
+    border: 1px solid s.color('light');
+    padding: s.space(2);
+
+    border-radius: 6px;
+    background-color: rgb(235, 9, 9);
+    color: white;
+   }
+    .button {
+        display: grid;
 grid-template-columns: repeat(2, 1fr);
       grid-template-rows: 1fr;
       gap: 8px;
+      padding-top: 20px;
        }
     p {
         color: s.color('light');
+        border-radius: 10px;
+
     }
 }
 main {
     display: flex;
     flex-direction: column;
     gap: s.space(10);
+
     margin: s.space(6);
 
-}
 
-.product-list {
-    li {
-        padding-right: 15px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
 }

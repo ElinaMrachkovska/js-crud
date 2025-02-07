@@ -1,15 +1,24 @@
 @use '../../lib/service.scss' as s;
 
 .form {
-    margin:20px;
     display: flex;
     flex-direction: column;
     padding: s.space(4);
     gap: s.space(8);
-    border-radius: 12px;
-    border: 1px solid s.color('light');
+    background: #fff;
     box-shadow: 0px 0px 26px 0px rgba(0, 0, 0, 0.1);
-
+    border-radius: 15px;
+   
+&__create {
+    font-size: 30px;
+    color: blue;
+    font-weight: bold;
+}
+    &__title {
+font-size: 20px;
+font-weight: bold;
+padding-bottom: s.space(1);
+    }
     &__content {
      display: grid;  
      gap: s.space(8);
@@ -19,7 +28,9 @@
         flex-direction: column;
         gap: s.space(2);
     }
-  
+    &__label {
+        font-size: 14px;
+    }
     &__input {
         border: 1px solid s.color('light');
         padding: s.space(2);
@@ -30,8 +41,6 @@
         border-radius: 10px;
         background-color: blue;
         color: white;
-        text-decoration: none;
-
     }
     &__field__grid {
         display: grid;
@@ -42,5 +51,20 @@ grid-template-columns: repeat(2, 1fr);
        }
     p {
         color: s.color('light');
+    }
+}
+main {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(10);
+    margin: s.space(6);
+
+}
+
+.product-list {
+    li {
+        padding-right: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 }
