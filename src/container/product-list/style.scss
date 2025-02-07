@@ -2,12 +2,14 @@
 
 main {
     margin: s.space(6);
+    width: 100%;
+    
 }
 
 
   .list {
     display:flex;
-    
+    flex-wrap: wrap;
     gap: s.space(5);
     justify-items:center;
     
@@ -15,7 +17,7 @@ main {
   
 
   .title_list {
-       padding: 15px 0 15px 0;
+    padding: 15px 0 15px 0;
      line-height: 38px; /* 118.75% */
        font-size: 30px;
     color: blue;
@@ -25,7 +27,6 @@ main {
   .card_list {
     gap: 14px;
     display: flex;
-    width: 32%;
     flex-direction: column;
     align-items: flex-start;
      background: #fff;
