@@ -1,6 +1,4 @@
-// Підключаємо технологію express для back-end сервера
 const express = require('express')
-// Cтворюємо роутер - місце, куди ми підключаємо ендпоїнти
 const router = express.Router()
 
 // ================================================================
@@ -9,7 +7,7 @@ class Product {
   static #list = []
   constructor(name, price, description) {
     this.id = Math.floor(Math.random() * 100000)
-    // this.id = new Date().getTime()
+
     this.createDate = new Date().toISOString()
     this.name = name
     this.price = price
@@ -23,7 +21,9 @@ class Product {
   }
 
   static getById = (id) =>
-    this.#list.find((product) => product.id === id)
+    this.#list.find(
+      (product) => Number(product.id) === Number(id),
+    )
 
   static deleteById = (id) => {
     const index = this.#list.findIndex(
@@ -42,6 +42,8 @@ class Product {
     if (product) {
       if (name) {
         product.name = name
+        product.price = price
+        product.description = description
       }
       return true
     } else {
@@ -49,15 +51,11 @@ class Product {
     }
   }
 }
-// router.get Створює нам один ентпоїнт
 
-// ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/', function (req, res) {
-  // res.render генерує нам HTML сторінку
   const list = Product.getList()
-  // ↙️ cюди вводимо назву файлу з сontainer
+
   res.render('index', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'index',
     data: {
       products: {
@@ -66,7 +64,6 @@ router.get('/', function (req, res) {
       },
     },
   })
-  // ↑↑ сюди вводимо JSON дані
 })
 
 router.get('/product-create', function (req, res) {
@@ -74,11 +71,8 @@ router.get('/product-create', function (req, res) {
   // console.log(req.body)
   const product = new Product(name, price, description)
   Product.add(product)
-
   console.log(Product.getList())
-
   res.render('alert', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'alert',
     info: 'Продукт було успішно cтворено',
   })
@@ -86,7 +80,7 @@ router.get('/product-create', function (req, res) {
 
 router.post('/product-create', function (req, res) {
   const { name, price, description } = req.body
-  // console.log(req.body)
+
   const product = new Product(name, price, description)
   Product.add(product)
 
@@ -119,18 +113,20 @@ router.get('/product-delete', function (req, res) {
 
 router.get('/product-edit', function (req, res) {
   const { id } = req.query
-
-  const result = Product.getById(Number(id), req.body)
+  // const result = Product.getById(Number(id), req.body)
   res.render('product-edit', {
     style: 'product-edit',
-    info: result
-      ? 'Товар оновлено'
-      : 'Товар з таким ID не знайдено',
+    // info: result
+    //   ? 'Товар оновлено'
+    //   : 'Товар з таким ID не знайдено',
+    info: 'Редагування товару',
+    ...(Product.getById(id) ?? {}),
   })
 })
 
 router.post('/product-edit', function (req, res) {
-  const { id, name, price, description } = req.body
+  const { id } = req.query
+  const { name, price, description } = req.body
 
   if (!id || !name || !price || !description) {
     return res.render('alert', {
