@@ -1,6 +1,6 @@
 <section>
     <div class="form">
-    <form method="GET" action="/deleteById">
+    <form method="GET" action="/product-delete">
       <h1 class="form__title"> Список товарів</h1>
       <div class="product-list">
         {{#with data.products}}
@@ -9,7 +9,7 @@
         {{else}}
         <ul>
           {{#each list}}
-          <li>{{name}} | {{price}} | {{id}} <a href="/product-delete?id={{id}}">(Видалити)</a></li>
+          <li>{{name}} | {{price}} | {{id}} <a href="/product-edit?id={{id}}">(Видалити)</a></li>
           {{/each}}
         </ul>
       {{/if}}
@@ -17,3 +17,5 @@
         </div>
         </div>
         </section>
+
+     
