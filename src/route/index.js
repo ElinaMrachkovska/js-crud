@@ -37,7 +37,10 @@ class Product {
     }
   }
 
-  static updateById = (id, { name }) => {
+  static updateById = (
+    id,
+    { name, price, description },
+  ) => {
     const product = this.getById(id)
     if (product) {
       if (name) {
