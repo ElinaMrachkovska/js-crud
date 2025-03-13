@@ -334,6 +334,39 @@ router.get('/purchase-product', function (req, res) {
   })
 })
 
+router.post('/purchase-create', function (req, res) {
+  const id = Number(req.query.id)
+  const amount = Number(req.body.amount)
+
+  console.log(id, amount)
+
+  res.render('purchase-product', {
+    style: 'purchase-product',
+    data: {
+      list: Product.getRandomList(id),
+      product: Product.getById(id),
+    },
+  })
+})
+
+router.post('/purchase-create', function (req, res) {
+  const id = Number(req.query.id)
+  const amount = Number(req.body.amount)
+
+  console.log(id, amount)
+
+  if (amount < 1) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        massage: 'Помилка',
+        info: 'Некоректна кількість товару',
+        link: `/purchase-product?id=${іd}`,
+      },
+    })
+  }
+})
+
 // router.get('/product-create', function (req, res) {
 //   const { name, price, description } = req.body
 //   // console.log(req.body)

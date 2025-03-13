@@ -59,4 +59,18 @@
   opacity: 0.7;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px;
+}
+
+.product-list {
+  width: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 /*# sourceMappingURL=style.css.map */
