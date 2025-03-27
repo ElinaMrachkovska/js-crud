@@ -1,0 +1,9 @@
+.main {
+  margin: 24px;
+}
+
+.form-card {
+  display: flex;
+  gap: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1490196078);
+}
