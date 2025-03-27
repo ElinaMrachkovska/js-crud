@@ -19,12 +19,12 @@
 .product-list {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: s.space(5);
 }
 .product-info__image {
     max-height: 300px;
-   align-self: center;
+    align-self: center;
 }
 .product-info__title {
     font-size: 20px;
