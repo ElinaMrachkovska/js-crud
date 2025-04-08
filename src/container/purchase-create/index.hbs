@@ -1,7 +1,7 @@
 <main class="main">
     {{#with data}}
-    <form method="POST" action="/purchase-submit?id={ `}" class="form-card">
-    {{> heading title="Ваше замовлення"}}
+    <form method="POST" action="/purchase-submit?id={{id}}" class="form-card">
+    {{>heading title="Ваше замовлення"}}
     <ul class="cart">
         {{#each cart}}
         <li class="cart__item">
@@ -11,9 +11,9 @@
             {{/each}}
      </ul>
 
-     {{> divider}}
+     {{>divider}}
 
-     {{> heading title="Оформлення замовлення"}}
+     {{>heading title="Оформлення замовлення"}}
 
      {{>field label="І'мя" name="firstname"}}
 

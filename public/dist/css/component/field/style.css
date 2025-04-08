@@ -4,11 +4,9 @@
   gap: 4px;
   width: 100%;
 }
-
 .field__label {
   font-size: 14px;
 }
-
 .field__input {
   border: 1px solid grey;
   padding: 8px;

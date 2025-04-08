@@ -5,13 +5,14 @@
     flex-direction: column;
     gap: 4px;
     width: 100%;
-}
-.field__label {
+
+&__label {
     font-size: 14px;
 
 }
 
-.field__input {
+&__input {
     border: 1px solid grey;
     padding: s.space(2);
+}
 }

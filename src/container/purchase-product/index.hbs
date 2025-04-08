@@ -3,18 +3,23 @@
 {{#with data.product}}
 <form method="POST" action="/purchase-create?id={{id}}">
 <div class="product-info">
-
+   <div>
     <img src="{{img}}" alt="{{title}}" class="product-info__image">
+   </div>
+   <div class="pro"> 
     <h2 class="product-info__title">{{title}}</h2>
+   {{>divider}}
     <p class="product-info__subtitle">{{description}}</h2>
-
-    {{>divider}}
+    
+    
     {{#each category}}
-    <span class="product-info__category product-info__category--{{id}}">{{text}}</span>
+   <p> <span class="product-info__category product-info__category--{{id}}">{{text}}</span>
+   </p>
     {{/each}}
      {{>divider}}
     {{>field label="Кількість" type="number" name="amount" value="1"}}
-    <button class="product-info__button"> Купити зараз</button>
+    <button class="product-info__button"> Купити зараз: {{price}}</button>
+</div>
 </div>
 </form>
 {{/with}}

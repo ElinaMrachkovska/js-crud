@@ -7,11 +7,13 @@
 .heading__title {
   font-size: 24px;
   color: blue;
+  text-align: center;
 }
 
 .heading__info {
   font-size: 16px;
   color: #000;
+  text-align: center;
 }
 
 .product-card {
@@ -27,7 +29,8 @@
 
 .product-card__image {
   max-height: 300px;
-  width: 100%;
+  width: 50%;
+  align-self: center;
 }
 
 .product-card__title {
@@ -85,7 +88,7 @@
 .product-list {
   width: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3, 1fr;
   gap: 20px;
 }
 
@@ -103,27 +106,37 @@
 }
 
 .product-info {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
-  align-items: flex-start;
+  align-items: center;
+}
+
+.pro {
+  display: grid;
+  gap: 16px;
 }
 
 .product-list {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
 }
 
 .product-info__image {
-  max-height: 300px;
-  align-self: center;
+  object-fit: cover;
+  float: right;
+  padding-right: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-info__title {
   font-size: 20px;
   font-weight: bold;
+  color: #0050FF;
 }
 
 .product-info__subtitle {
@@ -162,7 +175,7 @@
   text-decoration: none;
 }
 .product-info__button:hover {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /*# sourceMappingURL=style.css.map */

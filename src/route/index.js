@@ -300,28 +300,8 @@ Product.add(
   10,
 )
 class Purchase {
-  static DLIVERY_PRICE = 150
+  static DELIVERY_PRICE = 150
 }
-// router.get('/', function (req, res) {
-//   const list = Product.getList()
-
-//   res.render('purchase-index', {
-//     style: 'purchase-index',
-//     data: {
-//       img: 'https://picsum.photos/200/300.jpg',
-//       title:
-//         'Компютер Artline Gaming (X43v31) AMD Ryzen 5 3600',
-//       description:
-//         'AMD Ryzen 5 3600 (3.6 - 4.2 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 480 ГБ / nVidia GeForce RTX 3050, 8 ГБ / без ОД / LAN / без ОС',
-//       category: [
-//         { id: 1, text: 'Готовий до відправки' },
-//         { id: 2, text: 'Топ продажів' },
-//       ],
-//       price: 27000,
-//     },
-//   })
-// })
-
 router.get('/', function (req, res) {
   res.render('purchase-index', {
     style: 'purchase-index',
@@ -331,6 +311,19 @@ router.get('/', function (req, res) {
   })
 })
 
+// router.post('/purchase-create', function (req, res) {
+//   const id = Number(req.query.id)
+//   const amount = Number(req.body.amount)
+
+//   console.log(id, amount)
+//   res.render('purchase-product', {
+//     style: 'purchase-product',
+//     data: {
+//       list: Product.getRandomList(id),
+//       product: Product.getById(id),
+//     },
+//   })
+// })
 router.get('/purchase-product', function (req, res) {
   const id = Number(req.query.id)
   res.render('purchase-product', {
@@ -346,15 +339,13 @@ router.post('/purchase-create', function (req, res) {
   const id = Number(req.query.id)
   const amount = Number(req.body.amount)
 
-  console.log(id, amount)
-
   if (amount < 1) {
     return res.render('alert', {
       style: 'alert',
       data: {
         message: 'Помилка',
         info: 'Некоректна кількість товару',
-        link: `/purchase-product?id=${іd}`,
+        link: `/purchase-product?id=${id}`,
       },
     })
   }
@@ -383,7 +374,7 @@ router.post('/purchase-create', function (req, res) {
   // })
 
   const productPrice = product.price * amount
-  const totalPrice = productPrice + Purchase.DLIVERY_PRICE
+  const totalPrice = productPrice + Purchase.DELIVERY_PRICE
 
   res.render('purchase-create'),
     {
@@ -397,12 +388,12 @@ router.post('/purchase-create', function (req, res) {
           },
           {
             text: 'Доставка',
-            price: Purchase.DLIVERY_PRICE,
+            price: Purchase.DELIVERY_PRICE,
           },
         ],
         totalPrice,
         productPrice,
-        deliveryPrice: Purchase.DLIVERY_PRICE,
+        deliveryPrice: Purchase.DELIVERY_PRICE,
       },
     }
 })

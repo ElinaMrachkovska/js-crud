@@ -51,6 +51,7 @@
 
 
 .card {
+    margin: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -70,7 +71,7 @@
     }
 
     &__subtitle {
-        font-size: 10px;
+        font-size: 14px;
         margin-top: 8px;
         color: #212529;
     }
