@@ -7,13 +7,11 @@
 .heading__title {
   font-size: 24px;
   color: blue;
-  text-align: center;
 }
 
 .heading__info {
   font-size: 16px;
   color: #000;
-  text-align: center;
 }
 
 .product-card {
@@ -107,6 +105,11 @@
   border-radius: 10px;
 }
 
+.field--disabled {
+  position: absolute;
+  display: none;
+}
+
 .product-info__divider {
   width: 100%;
   height: 1px;
@@ -117,7 +120,7 @@
   background-color: #0050FF;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   text-align: center;
   padding: 10px 20px;
   font-size: 16px;
@@ -154,6 +157,23 @@
 .cart__item {
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
+}
+
+.one {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.comment input {
+  height: 68px;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

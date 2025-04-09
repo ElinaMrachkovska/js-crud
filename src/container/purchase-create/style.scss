@@ -29,6 +29,19 @@
 &__item {
 display: flex;
 justify-content: space-between;
+font-weight: bold;
 }
 }
-
+.one {
+display: grid;
+grid-template-columns:1fr 1fr;
+gap: 20px;
+}
+.comment input {
+    height: 68px;
+}
+.two {
+    display: grid;
+grid-template-columns:1fr 1fr;
+gap: 20px;
+}
