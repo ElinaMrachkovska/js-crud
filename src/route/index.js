@@ -301,8 +301,36 @@ Product.add(
 )
 class Purchase {
   static DELIVERY_PRICE = 150
+  static #BONUS_FACTOR = 0.1 // 5%
+
   static #count = 0
   static #list = []
+
+  static #bonusAccount = new Map()
+
+  static getBonusBalance = (email) => {
+    return Purchase.#bonusAccount.get(email) || 0
+  }
+
+  static updateBonusBalance = (
+    email,
+    price,
+    bonusUse = 0,
+  ) => {
+    const amount = price * Purchase.#BONUS_FACTOR
+    const currentBalance = Purchase.getBonusBalance(email)
+
+    const currentBonus = Purchase.getBonusBalance(email)
+    const newBonus = currentBonus + bonus
+    Purchase.#bonusAccount.set(email, newBonus)
+
+    const updatedBalance =
+      currentBalance + amount - bonusUse
+
+    Purchase.#bonusAccount.set(email, updatedBalance)
+    console.log(email, updatedBalance)
+    return amount
+  }
 
   constructor(data, product) {
     this.id = ++Purchase.#count
@@ -320,7 +348,7 @@ class Purchase {
     this.totalPrice = data.totalPrice
     this.productPrice = data.productPrice
     this.deliveryPrice = data.deliveryPrice
-    this.amount = amount
+    this.amount = data.amount
 
     this.product = product
   }
@@ -354,6 +382,34 @@ class Purchase {
     }
   }
 }
+
+class Promocode {
+  static #list = []
+
+  constructor(name, factor) {
+    this.name = name
+    this.factor = factor
+  }
+
+  static add = (name, factor) => {
+    const newPromoCode = new Promocode(name, factor)
+    Promocode.#list.push(newPromoCode)
+    return newPromoCode
+  }
+
+  static getByName = (name) => {
+    return this.#list.find((promo) => promo.name === name)
+  }
+
+  static calc = (promo, price) => {
+    return price * promo.factor
+  }
+}
+
+Promocode.add('SUMMER2025', 0.9)
+Promocode.add('WINTER2025', 0.5)
+Promocode.add('SPRING2025', 0.75)
+
 router.get('/', function (req, res) {
   res.render('purchase-index', {
     style: 'purchase-index',
@@ -410,7 +466,7 @@ router.post('/purchase-create', function (req, res) {
       data: {
         message: 'Помилка',
         info: 'Такої кількості товару немає в наявності',
-        link: `/purchase-product?id=${іd}`,
+        link: `/purchase-product?id=${id}`,
       },
     })
   }
@@ -460,8 +516,11 @@ router.post('/purchase-submit', function (req, res) {
 
     firstname,
     lastname,
-    phone,
     email,
+    phone,
+
+    promocode,
+    bonus,
   } = req.body
 
   const product = Product.getById(id)
@@ -477,16 +536,28 @@ router.post('/purchase-submit', function (req, res) {
     })
   }
 
+  if (product.amount < amount) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Товару в такій кількості немає',
+        link: `/purchase-list`,
+      },
+    })
+  }
   totalPrice = Number(totalPrice)
   productPrice = Number(productPrice)
   deliveryPrice = Number(deliveryPrice)
   amount = Number(amount)
+  bonus = Number(bonus)
 
   if (
     isNaN(totalPrice) ||
     isNaN(productPrice) ||
     isNaN(deliveryPrice) ||
-    isNaN(amount)
+    isNaN(amount) ||
+    isNaN(bonus) // Додано кому
   ) {
     return res.render('alert', {
       style: 'alert',
@@ -497,6 +568,44 @@ router.post('/purchase-submit', function (req, res) {
       },
     })
   }
+
+  if (!firstname || !lastname || !email || !phone) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка, відсутні дані',
+        info: 'Заповніть всі поля',
+        link: `/purchase-list`,
+      },
+    })
+  }
+
+  if (promocode) {
+    promocode = Promocode.getByName(promocode)
+
+    if (promocode) {
+      totalPrice = Promocode.calc(promocode, totalPrice)
+    }
+  }
+
+  const purchase = Purchase.add(
+    {
+      totalPrice,
+      productPrice,
+      deliveryPrice,
+      amount,
+
+      firstname,
+      lastname,
+      email,
+      phone,
+
+      promocode,
+    },
+    product,
+  )
+
+  console.log(purchase)
 
   console.log(req.query)
   console.log(req.body)
