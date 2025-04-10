@@ -312,17 +312,19 @@ class Purchase {
     return Purchase.#bonusAccount.get(email) || 0
   }
 
+  static calcBonusAmount = (value) => {
+    return value * Purchase.#BONUS_FACTOR
+  }
   static updateBonusBalance = (
     email,
     price,
     bonusUse = 0,
   ) => {
-    const amount = price * Purchase.#BONUS_FACTOR
+    const amount = this.calcBonusAmount(price)
     const currentBalance = Purchase.getBonusBalance(email)
 
-    const currentBonus = Purchase.getBonusBalance(email)
-    const newBonus = currentBonus + bonus
-    Purchase.#bonusAccount.set(email, newBonus)
+    //  const newBonus = currentBonus + bonus
+    // Purchase.#bonusAccount.set(email, newBonus)
 
     const updatedBalance =
       currentBalance + amount - bonusUse
@@ -471,18 +473,11 @@ router.post('/purchase-create', function (req, res) {
     })
   }
 
-  // res.render('purchase-product', {
-  //   style: 'purchase-product',
-  //   data: {
-  //     list: Product.getRandomList(id),
-  //     product: Product.getById(id),
-  //   },
-  // })
-
-  // console.log(product, amount)
+  console.log(product, amount)
 
   const productPrice = product.price * amount
   const totalPrice = productPrice + Purchase.DELIVERY_PRICE
+  const bonus = Purchase.calcBonusAmount(totalPrice)
 
   res.render('purchase-create', {
     style: 'purchase-create',
@@ -502,6 +497,7 @@ router.post('/purchase-create', function (req, res) {
       productPrice,
       deliveryPrice: Purchase.DELIVERY_PRICE,
       amount,
+      bonus,
     },
   })
 })
@@ -518,6 +514,7 @@ router.post('/purchase-submit', function (req, res) {
     lastname,
     email,
     phone,
+    comment,
 
     promocode,
     bonus,
@@ -580,6 +577,22 @@ router.post('/purchase-submit', function (req, res) {
     })
   }
 
+  if (bonus || bonus > 0) {
+    const bonusAmount = Purchase.getBonusBalance(email)
+
+    console.log(bonusAmount)
+
+    if (bonus > bonusAmount) {
+      bonus = bonusAmount
+    }
+
+    Purchase.updateBonusBalance(email, totalPrice, bonus)
+
+    totalPrice -= bonus
+  } else {
+    Purchase.updateBonusBalance(email, totalPrice, 0)
+  }
+
   if (promocode) {
     promocode = Promocode.getByName(promocode)
 
@@ -588,17 +601,21 @@ router.post('/purchase-submit', function (req, res) {
     }
   }
 
+  if (totalPrice < 0) totalPrice = 0
+
   const purchase = Purchase.add(
     {
       totalPrice,
       productPrice,
       deliveryPrice,
       amount,
+      bonus,
 
       firstname,
       lastname,
       email,
       phone,
+      comment,
 
       promocode,
     },
@@ -621,6 +638,27 @@ router.post('/purchase-submit', function (req, res) {
   })
 })
 
+router.get('/purchase-list', function (req, res) {
+  const purchaseList = Purchase.getList() // Отримуємо список замовлень
+
+  // Перетворюємо дані для відображення
+  const formattedList = purchaseList.map((purchase) => {
+    return {
+      id: purchase.id,
+      title: purchase.product.title,
+      totalPrice: purchase.totalPrice,
+      bonus: purchase.bonus,
+    }
+  })
+
+  res.render('purchase-list', {
+    style: 'purchase-list',
+    data: {
+      list: formattedList,
+      isEmpty: formattedList.length === 0,
+    },
+  })
+})
 // router.get('/product-create', function (req, res) {
 //   const { name, price, description } = req.body
 //   // console.log(req.body)
