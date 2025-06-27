@@ -1,0 +1,40 @@
+<main class="main">
+  {{>heading title="Мої замовлення"}}
+    {{#if data.isEmpty}}
+    <p>Список замовлень порожній.</p>
+  {{else}}
+  <section class="order-list">
+    <table>
+ 
+         {{#each data.list}}
+              <thead>
+        <tr>
+          <th>ID</th>
+          <th>Товари</th>
+          <th>Сума замовлення</th>
+          <th>Нараховані бонуси</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>{{id}}</td>
+           
+            <td>{{title}}</td>
+            
+            <td>{{totalPrice}}</td>
+            
+            <td>{{bonus}}</td>
+          
+          </tr>
+        
+        {{/each}}
+        
+      </tbody>
+        
+    </table>
+    
+  </section>
+  {{/if}}
+</main>
+
+{{> button text="Далі"}}
