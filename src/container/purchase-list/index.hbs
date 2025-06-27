@@ -1,0 +1,39 @@
+<main class="main">
+   {{>heading title="Мої замовлення"}}
+    {{#if data.isEmpty}}
+    <p>Список замовлень порожній.</p>
+  {{else}}
+  <section class="order-list">
+    <table method="POST" action="/purchase-info?id={{id}}" class="form-card">
+ 
+         {{#each data.list}}
+              <thead>
+        <tr>
+          <th >ID: {{id}}</th>
+          <th>Товари</th>
+          <th>Сума замовлення</th>
+          <th>Нараховані бонуси</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td rowspan="2"></td>        
+            <td>{{title}}</td>
+            
+            <td>{{totalPrice}}</td>
+            
+            <td>{{bonus}}</td>
+          
+          </tr>
+        
+        {{/each}}
+        
+      </tbody>
+        
+    </table>
+    
+  </section>
+  {{/if}}
+</main>
+
+<button href="/purchase-info">Далі</button>
