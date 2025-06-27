@@ -155,4 +155,9 @@ td {
   border-bottom: 1px solid grey;
 }
 
+a {
+  float: right;
+  margin-right: 50px;
+}
+
 /*# sourceMappingURL=style.css.map */

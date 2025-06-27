@@ -320,12 +320,8 @@ class Purchase {
     price,
     bonusUse = 0,
   ) => {
-    const amount = this.calcBonusAmount(price)
+    const amount = price * Purchase.#BONUS_FACTOR
     const currentBalance = Purchase.getBonusBalance(email)
-
-    const currentBonus = Purchase.getBonusBalance(email)
-    const newBonus = currentBonus + bonus
-    Purchase.#bonusAccount.set(email, newBonus)
 
     const updatedBalance =
       currentBalance + amount - bonusUse

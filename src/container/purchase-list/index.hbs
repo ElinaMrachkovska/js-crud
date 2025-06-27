@@ -1,35 +1,31 @@
 <main class="main">
-<<<<<<< HEAD
+
    {{>heading title="Мої замовлення"}}
-=======
-  {{>heading title="Мої замовлення"}}
->>>>>>> cee6270e9def04242e7fe686362e6525a7d37781
+
+ 
     {{#if data.isEmpty}}
     <p>Список замовлень порожній.</p>
   {{else}}
   <section class="order-list">
-<<<<<<< HEAD
-    <table method="POST" action="/purchase-info?id={{id}}" class="form-card">
+
+    <table method="POST" action="/purchase-info?id={{id}}">
  
          {{#each data.list}}
-              <thead>
-        <tr>
-          <th >ID: {{id}}</th>
-=======
-    <table>
+     
+
+    
       <thead>
         <tr>
-          <th>ID</th>
->>>>>>> cee6270e9def04242e7fe686362e6525a7d37781
+          <th>ID:{{id}}</th>
           <th>Товари</th>
           <th>Сума замовлення</th>
           <th>Нараховані бонуси</th>
         </tr>
       </thead>
       <tbody>
-<<<<<<< HEAD
+
           <tr>
-              <td rowspan="2"></td>        
+              <td ></td>        
             <td>{{title}}</td>
             
             <td>{{totalPrice}}</td>
@@ -48,23 +44,8 @@
   {{/if}}
 </main>
 
-<button href="/purchase-info">Далі</button>
-=======
-         {{#each data.list}}
-          <tr>
-            <td>{{id}}</td>
-            {{>divider}}
-            <td>{{title}}</td>
-            {{>divider}}
-            <td>{{totalPrice}}</td>
-            {{>divider}}
-            <td>{{bonus}}</td>
-            {{>divider}}
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </section>
-  {{/if}}
-</main>
->>>>>>> cee6270e9def04242e7fe686362e6525a7d37781
+<a href="/purchase-info?id={{id}}"> 
+   {{> button text="Оформлення"}}
+     </a>
+
+        
