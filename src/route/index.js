@@ -333,6 +333,7 @@ class Purchase {
 
   constructor(data, product) {
     this.id = ++Purchase.#count
+    this.title = data.title || product.title
 
     this.firstname = data.firstname
     this.lastname = data.lastname
@@ -502,6 +503,7 @@ router.post('/purchase-submit', function (req, res) {
   const id = Number(req.query.id)
 
   let {
+    title,
     totalPrice,
     productPrice,
     deliveryPrice,
@@ -602,19 +604,18 @@ router.post('/purchase-submit', function (req, res) {
 
   const purchase = Purchase.add(
     {
-      totalPrice,
-      productPrice,
-      deliveryPrice,
-      amount,
-      bonus,
-
       firstname,
       lastname,
       email,
       phone,
       comment,
-
+      totalPrice,
+      productPrice,
+      deliveryPrice,
+      amount,
+      bonus,
       promocode,
+      title: product.title,
     },
     product,
   )
@@ -661,16 +662,12 @@ router.get('/purchase-info', function (req, res) {
   const id = Number(req.query.id)
   const purchase = Purchase.getById(id)
 
-  console.log(purchase)
-
-  console.log(req.query)
-  console.log(req.body)
+  console.log('purchase data:', purchase)
 
   return res.render('purchase-info', {
     style: 'purchase-info',
-    data: {
-      purchase,
-    },
+    data: purchase,
+    link: `/purchase-create?id=${id}`,
   })
 })
 // router.get('/product-create', function (req, res) {
