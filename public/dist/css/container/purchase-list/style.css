@@ -160,4 +160,12 @@ a {
   margin-right: 50px;
 }
 
+.button {
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+}
+
 /*# sourceMappingURL=style.css.map */

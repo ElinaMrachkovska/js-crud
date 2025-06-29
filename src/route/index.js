@@ -658,30 +658,18 @@ router.get('/purchase-list', function (req, res) {
 })
 
 router.get('/purchase-info', function (req, res) {
-  const purchaseList = Purchase.getList() // Отримуємо список замовлень
+  const id = Number(req.query.id)
+  const purchase = Purchase.getById(id)
 
-  // Перетворюємо дані для відображення
-  const formattedList = purchaseList.map((purchase) => {
-    return {
-      id: purchase.id,
-      firstname: purchase.firstname,
-      lastname: purchase.lastname,
-      email: purchase.email,
-      phone: purchase.phone,
-      comment: purchase.comment,
-      title: purchase.product.title,
-      totalPrice: purchase.totalPrice,
-      bonus: purchase.bonus,
-    }
-  })
+  console.log(purchase)
 
-  res.render('alert', {
-    style: 'alert',
+  console.log(req.query)
+  console.log(req.body)
 
+  return res.render('purchase-info', {
+    style: 'purchase-info',
     data: {
-      message: 'Успішно',
-      info: 'Замовлення створено',
-      link: `/purchase-info`,
+      purchase,
     },
   })
 })
