@@ -7,21 +7,46 @@
 @use '../../component/field/style.scss' as field;
 @use '../../component/button/style.scss' as button;
 
-.order-list{
-    display: grid;
-    grid-template-columns: 4, (1fr);
-    gap: 20px;
-    margin-top: 10px;
+.order-info {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px #0001;
+    padding: 32px;
+    margin: 0 auto;
+    max-width: 100%;
+    tr {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px 0;
+      td {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+    }
+    a {
+      display: block;
+      text-align: right;
+    }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+
+&__label {
+    font-size: 14px;
+
 }
-th {
-    text-align: left;
-    padding-top:10px;
-    
+
+&__input {
+    border: 1px solid grey;
+    padding: s.space(2);
+  border-radius: 10px;
 }
-td{
-    font-weight: bold;
-    padding-top:10px;
-    padding-bottom:10px;
-    border-bottom: 1px solid grey;
-     
+}
+.field--disabled {
+    position: absolute;
+    display: none;
 }

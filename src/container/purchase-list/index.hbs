@@ -8,7 +8,7 @@
   {{else}}
   <section class="order-list">
 
-    <table method="POST" action="/purchase-info?id={{id}}">
+    <table>
  
          {{#each data.list}}
      
@@ -42,10 +42,10 @@
     
   </section>
   {{/if}}
-</main>
 
-<a href="/purchase-info?id={{id}}"> 
-   {{> button text="Оформлення"}}
-     </a>
 
-        
+<a href="/purchase-info?id={{id}}">
+        {{> button text="Оформити"}}
+      </a>
+
+        </main>

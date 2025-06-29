@@ -1,40 +1,59 @@
 <main class="main">
-  {{>heading title="Мої замовлення"}}
-    {{#if data.isEmpty}}
-    <p>Список замовлень порожній.</p>
+  {{>heading title="Інформація про замовлення"}}
+  
+      {{#if data.isEmpty}}
+    <p>Список замовлень порожній</p>
   {{else}}
-  <section class="order-list">
-    <table>
- 
-         {{#each data.list}}
-              <thead>
-        <tr>
-          <th>ID</th>
-          <th>Товари</th>
-          <th>Сума замовлення</th>
-          <th>Нараховані бонуси</th>
-        </tr>
-      </thead>
-      <tbody>
+  {{!-- {{#with data.purchase}} --}}
+  <section class="order-info">
+  <table>
+     <tbody>
+      <tr>
+        <td><b>ID:</b> {{data.purchase.id}} </td>
+      <td> </td>
+      </tr>
           <tr>
-            <td>{{id}}</td>
-           
-            <td>{{title}}</td>
-            
-            <td>{{totalPrice}}</td>
-            
-            <td>{{bonus}}</td>
-          
+            <td><b>Ім’я:</b> {{data.purchase.firstname}} </td>
+ <td><b>Прізвище:</b>  {{lastname}}</td>
           </tr>
-        
-        {{/each}}
-        
-      </tbody>
-        
+            <td><b>Телефон:</b> {{phone}}</td>
+            <td><b> Електронна пошта:</b> {{email}}</td>
+          </tr>
+        <tr>
+          <td><b>Назва товару:</b> {{title}}</td>
+          <td></td>
+        </tr>
+          <tr>
+          <td><b>Коментар:</b> {{comment}}</td>
+          <td></td>
+          </tr>
+          <tr>
+            <td><b>Вартість товарів:</b> {{productPrice}}</td>
+            <td><b>Вартість доставки:</b> {{deliveryPrice}}</td>
+          </tr>
+            <tr>
+            <td><b>Сума до сплати:</b> {{totalPrice}}</td>
+            <td><b>Нараховані бонуси:</b> {{bonus}}</td>
+          </tr>
+         </tbody>
+       
     </table>
     
-  </section>
-  {{/if}}
-</main>
 
-{{> button text="Далі"}}
+       
+      {{!-- <li><b>ID:</b> {{data.purchase.id}}</li>
+      <li><b>Товар:</b> {{data.purchase.title}}</li>
+      <li><b>Сума:</b> {{data.purchase.totalPrice}} грн</li>
+      <li><b>Бонуси:</b> {{data.purchase.bonus}} грн</li>
+      <li><b>Ім’я:</b> {{data.purchase.firstname}} {{data.purchase.lastname}}</li>
+      <li><b>Телефон:</b> {{data.purchase.phone}}</li>
+      <li><b>Пошта:</b> {{data.purchase.email}}</li>
+      <li><b>Коментар:</b> {{data.purchase.comment}}</li>
+    </ul> --}}
+     
+       </section>
+      {{!-- {{/with}} --}}
+       {{/if}}
+    <a href="/purchase-list">{{> button text="Змінити дані"}}</a>
+ 
+</main>
