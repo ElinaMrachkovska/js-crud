@@ -6,38 +6,43 @@
   {{else}}
   {{!-- {{#with data.purchase}} --}}
   <section class="order-info">
-  <table>
-     <tbody>
-      <tr>
-        <td><b>ID:</b> {{data.purchase.id}} </td>
-      <td> </td>
-      </tr>
-          <tr>
-            <td><b>Ім’я:</b> {{data.purchase.firstname}} </td>
- <td><b>Прізвище:</b>  {{lastname}}</td>
-          </tr>
-            <td><b>Телефон:</b> {{phone}}</td>
-            <td><b> Електронна пошта:</b> {{email}}</td>
-          </tr>
-        <tr>
-          <td><b>Назва товару:</b> {{title}}</td>
-          <td></td>
-        </tr>
-          <tr>
-          <td><b>Коментар:</b> {{comment}}</td>
-          <td></td>
-          </tr>
-          <tr>
-            <td><b>Вартість товарів:</b> {{productPrice}}</td>
-            <td><b>Вартість доставки:</b> {{deliveryPrice}}</td>
-          </tr>
-            <tr>
-            <td><b>Сума до сплати:</b> {{totalPrice}}</td>
-            <td><b>Нараховані бонуси:</b> {{bonus}}</td>
-          </tr>
-         </tbody>
+ 
+      <div class="flex">
+        <b>ID:</b> {{data.purchase.id}} 
+      
+      </div>
+     {{>divider}}
+          <div class="flex">
+           <div> <p><b>Ім’я:</b> {{data.purchase.firstname}} </p>
+ <p><b>Прізвище:</b>  {{data.purchase.lastname}}</p>
+          </div>
+            <div><p><b>Телефон:</b> {{data.purchase.phone}}</p>
+            <p><b> Електронна пошта:</b> {{data.purchase.email}}</p>
+          </div>
+          </div>
+          {{>divider}}
+        <div class="flex">
+          <div>
+          <p><b>Назва товару:</b> {{data.purchase.title}}</p>
+                 
+          <p><b>Коментар:</b> {{data.purchase.comment}}</p>
+          </div>
+          </div>
+          {{>divider}}
+          <div class="flex">
+            <div>
+            <p><b>Вартість товарів:</b> {{data.purchase.productPrice}}</p>
+            <p><b>Вартість доставки:</b> {{data.purchase.deliveryPrice}}</p>
+            </div>
+            <div>
+            <p><b>Сума до сплати:</b> {{data.purchase.totalPrice}}</p>
+            <p><b>Нараховані бонуси:</b> {{data.purchase.bonus}}</p>
+            </div>
+          </div>
+          {{>divider}}
        
-    </table>
+       
+   
     
 
        
@@ -54,6 +59,6 @@
        </section>
       {{!-- {{/with}} --}}
        {{/if}}
-    <a href="/purchase-list">{{> button text="Змінити дані"}}</a>
+    <a href="/purchase-change">{{> button text="Змінити дані"}}</a>
  
 </main>
