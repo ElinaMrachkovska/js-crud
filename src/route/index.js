@@ -670,6 +670,8 @@ router.get('/purchase-info', function (req, res) {
     link: `/purchase-create?id=${id}`,
   })
 })
+
+
 // router.get('/product-create', function (req, res) {
 //   const { name, price, description } = req.body
 //   // console.log(req.body)
