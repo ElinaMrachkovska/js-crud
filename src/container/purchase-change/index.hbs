@@ -1,20 +1,29 @@
 <main>
 
-     <form method="POST" action="/purchase-change?id={{id}}" class="form-card">
+     <form method="POST" action="/purchase-change?id={{purchase.id}}" class="form-card">
+
     {{>heading title="Зміна даних"}}
+   <div>
+    <p> ID:</p>
+    <p>{{purchase.id}}</p>
+   </div>
+
    
-<div class="one">
-   {{>field label="ID" name="{{purchase.id}}"}}
-   {{>field label="І'мя" name="{{purchase.firstname}}"}}
+  <div class="one"> 
+    {{>field label="І'мя" name="firstname" for="firstname" value=purchase.firstname}}
 
-   {{>field label="Прізвище" name="{{purchase.lastName}}"}}
+{{>field label="Прізвище" name="lastName" for="lastName" value=purchase.lastName}}
+  
+    {{>field label="Телефон" name="phone" for="phone" value=purchase.phone}}
 
-    {{>field label="Телефон" name="{{purchase.phone}}"}}
-
-    {{>field label="Пошта" name="{{purchase.email}}"}}
-
+    {{>field label="Пошта" name="email" for="email" value=purchase.email}}
+    </div>
 
       <button type="submit" class="purchase-change__save-btn">Зберегти зміни</button>
+
+      <a href="/purchase-info?id={{id}}">
+        {{> button text="Змінити дані"}}
+      </a>
     </form>
   </div>
 </main>
