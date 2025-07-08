@@ -4,6 +4,8 @@
       {{#if data.isEmpty}}
     <p>Список замовлень порожній</p>
   {{else}}
+  <div class="form-card">
+    
   {{!-- {{#with data.purchase}} --}}
   <section class="order-info">
  
@@ -59,6 +61,6 @@
        </section>
       {{!-- {{/with}} --}}
        {{/if}}
-    <a href="/purchase-change">{{> button text="Змінити дані"}}</a>
- 
+    <a href={{link}}>{{> button text="Змінити дані"}}</a>
+  </div>
 </main>

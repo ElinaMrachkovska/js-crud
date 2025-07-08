@@ -10,6 +10,17 @@
 .main {
   margin: 20px;
 }
+.form-card {
+  margin-top:20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #00000026;
+  padding: s.space(5);
+  border: 1px solid s.color(border);
+  border-radius: 10px;
+}
 .order-info {
  
     background: #fff;
@@ -24,8 +35,9 @@
    
 }
 .flex {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: start;
   margin: 15px;
 }
 p { padding-bottom: 8px;}
