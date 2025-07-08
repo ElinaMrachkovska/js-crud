@@ -693,7 +693,7 @@ router.post('/purchase-change', (req, res) => {
 
     data: {
       message: 'Успішно',
-      info: 'Замовлення збережено',
+      info: 'Зміни збережено',
       link: `/purchase-info?id=${id}`,
     },
   })
