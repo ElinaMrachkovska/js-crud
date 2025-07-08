@@ -7,7 +7,9 @@
 @use '../../component/field/style.scss' as field;
 @use '../../component/button/style.scss' as button;
 
-
+.main {
+    margin: 20px;
+  }
 .order-list{
     display: grid;
     grid-template-columns: 4, (1fr);
@@ -32,15 +34,7 @@ td{
      
 }
 
-a {
-    float: right;
-    margin-right: 50px;
-}
-
-.button {
-    border: 1px solid s.color('light');
-    padding: s.space(2);
-    border-radius: 10px;
-    background-color: blue;
-    color: white;
-}
+    button {
+        width: 100%;
+        margin-top: 12px;
+      }

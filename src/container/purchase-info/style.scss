@@ -7,6 +7,9 @@
 @use '../../component/field/style.scss' as field;
 @use '../../component/button/style.scss' as button;
 
+.main {
+  margin: 20px;
+}
 .order-info {
  
     background: #fff;
@@ -41,6 +44,7 @@ p { padding-bottom: 8px;}
     }
     button {
       width: 100%;
+      margin-top: 12px;
     }
   
 

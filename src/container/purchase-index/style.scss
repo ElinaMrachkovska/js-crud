@@ -6,15 +6,19 @@
 @use '../../component/field/style.scss' as field;
 @use '../../component/button/style.scss' as button;
 
+
+
 .main {
+    margin: 20px;
     display: flex;
     flex-direction: column;
     gap: s.space(10);
     padding: 20px;
 }
-.product-list {
-    width: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: s.space(5);
-}
+
+.product-list { 
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 20px; 
+justify-content: center;
+ }

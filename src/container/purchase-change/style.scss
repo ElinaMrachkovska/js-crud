@@ -10,6 +10,7 @@
     flex-direction: column;
     gap: s.space(10);
     padding: s.space(10);
+    margin: 20px;
 }
 .form-card {
     width: 100%;
@@ -22,26 +23,9 @@
     border-radius: 10px;
 }
 
-.cart {
-    display: grid;
-    gap: s.space(2);
-
-&__item {
-display: flex;
-justify-content: space-between;
-font-weight: bold;
-}
-}
 .one {
 display: grid;
 grid-template-columns:1fr 1fr;
 gap: 20px;
 }
-.comment input {
-    height: 68px;
-}
-.two {
-    display: grid;
-grid-template-columns:1fr 1fr;
-gap: 20px;
-}
+

@@ -667,10 +667,49 @@ router.get('/purchase-info', function (req, res) {
   return res.render('purchase-info', {
     style: 'purchase-info',
     data: purchase,
-    link: `/purchase-create?id=${id}`,
+    link: `/purchase-change?id=${id}`,
   })
 })
 
+router.get('/purchase-info', (req, res) => {
+  // ...тут отримання purchaseInfo...
+  res.render('purchase-info', {
+    /* ... */
+  })
+})
+
+router.get('/purchase-change', (req, res) => {
+  const id = req.query.id
+  // Тут отримай purchase по id (наприклад з БД або масиву)
+  // Для прикладу:
+  const purchase = {
+    id: id,
+    lastName: purchase.lastname,
+    firstName: purchase.firstname,
+    email: purchase.email,
+    phone: purchase.phone,
+  }
+  res.render('purchase-change', { purchase })
+})
+
+router.post('/purchase-change', (req, res) => {
+  // Тут збережи змінені дані з req.body
+  // ...
+  console.log(purchase)
+
+  console.log(req.query)
+  console.log(req.body)
+
+  res.render('alert', {
+    style: 'alert',
+
+    data: {
+      message: 'Успішно',
+      info: 'Замовлення створено',
+      link: `/purchase-info`,
+    },
+  })
+})
 
 // router.get('/product-create', function (req, res) {
 //   const { name, price, description } = req.body

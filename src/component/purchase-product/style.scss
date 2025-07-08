@@ -9,11 +9,16 @@
        align-items: flex-start;
     gap: s.space(3);
     background-color: white;
+    max-width: 100%;
 }
 .product-card__image {
-    max-height: 300px;
-    width: 50%; 
-    align-self: center;
+    // max-height: 300px;
+    // width: 50%; 
+    // align-self: center;
+    max-width: 100%;
+    max-height: 100%; 
+    object-fit: contain; 
+    border-radius: 4px;
     
 }
 
@@ -65,15 +70,3 @@
     }
 }
 
-.main {
-    display: flex;
-    flex-direction: column;
-    gap: s.space(10);
-    padding: 20px;
-}
-.product-list {
-    width: 10px;
-    display: grid;
-    grid-template-columns: 3, (1fr);
-    gap: s.space(5);
-}
